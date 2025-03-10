@@ -3,19 +3,19 @@ import matplotlib.pyplot as plt
 import os
 import matplotlib as mpl
 
-mpl.rcParams['xtick.labelsize'] = 14
-mpl.rcParams['ytick.labelsize'] = 14
-
 def plot_simulation_image(simulation_path, save_path, timestep):
+
+    # Load data
     prey = np.load(os.path.join(simulation_path, 'prey.npy'))
     predator = np.load(os.path.join(simulation_path, 'predator.npy'))
 
+    # Extract positions
     x_prey = prey[0, timestep]
     y_prey = prey[1, timestep]
-    print(x_prey)
-
     x_predator = predator[0, timestep]
     y_predator = predator[1, timestep]
+
+    # Plotting
     fontsize = 15
     cmap = plt.cm.viridis
     plt.figure(figsize=(8, 8))
@@ -33,9 +33,12 @@ def plot_simulation_image(simulation_path, save_path, timestep):
     plt.show()
 
 
+if __name__=='__main__':
 
-
-simulation_path = '/Users/oliversange/Desktop/BA_Desktop/Compressed simulations/data_2T_A_run1/simulation_n=100_T_A=20_T_0=40_T_0_predator=10_R=2.244924096618746_dt=1e-05_steps=3000000_boundary_condition=True'
-save_path = '/Users/oliversange/Desktop/PLOTS/prey_multiple_groups.pdf'
-timestep = 210000
-plot_simulation_image(simulation_path, save_path, int(timestep/1000))
+    # Plot simulation situation
+    mpl.rcParams['xtick.labelsize'] = 14
+    mpl.rcParams['ytick.labelsize'] = 14
+    simulation_path = '/Users/oliversange/Desktop/BA_Desktop/Compressed simulations/data_2T_A_run1/simulation_n=100_T_A=20_T_0=40_T_0_predator=10_R=2.244924096618746_dt=1e-05_steps=3000000_boundary_condition=True'
+    save_path = '/Users/oliversange/Desktop/PLOTS/prey_multiple_groups.pdf'
+    timestep = 210000
+    plot_simulation_image(simulation_path, save_path, int(timestep/1000))

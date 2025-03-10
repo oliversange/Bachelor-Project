@@ -1,7 +1,6 @@
 import os
 import shutil
 import numpy as np
-import tqdm
 
 # Function to copy folder and modify prey.npy and predator.npy
 def duplicate_and_modify(folder_path, output_folder):
@@ -38,8 +37,14 @@ def duplicate_and_modify(folder_path, output_folder):
                 np.save(os.path.join(output_subfolder_path, "predator.npy"), predator_modified)
         print("succes")
     print("all_succes")
-# Example usage
-source_folder = "/Users/oliversange/Desktop/Speed simulations"
-output_folder = "/Users/oliversange/Desktop/Compressed simulations/data_equalspeed_r_prey_prey=3r_c_T_A=30_T_0=60_r_prey_pred=3_r_c"
 
-duplicate_and_modify(source_folder, output_folder)
+if __name__=='__main__':
+
+    # Compress large simulation files
+
+    # Paths
+    source_folder = "/Users/oliversange/Desktop/Speed simulations"
+    output_folder = "/Users/oliversange/Desktop/Compressed simulations/data_equalspeed_r_prey_prey=3r_c_T_A=30_T_0=60_r_prey_pred=3_r_c"
+
+    # Run
+    duplicate_and_modify(source_folder, output_folder)

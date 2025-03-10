@@ -30,6 +30,9 @@ class ABP:
         return np.sqrt(a**2 + b**2)
 
     def calculate_prey_starting_parameters(self):
+
+        # Initial condition
+
         rc = 2 ** (1 / 6)
 
         """

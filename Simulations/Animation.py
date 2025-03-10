@@ -3,9 +3,6 @@ import matplotlib.pyplot as plt
 from matplotlib.animation import FuncAnimation
 import numpy as np
 
-size = 175
-cmap = plt.get_cmap("inferno")
-
 def update(frame):
     global size
     global selected_folder
@@ -70,13 +67,19 @@ def plot_animation(folder_path):
 
     plt.show()
 
-# Example usage:
-base_simulation_path = '/Users/oliversange/Library/Mobile Documents/com~apple~CloudDocs/Physikstudium/BA/BA_Desktop/Compressed simulations/data_2T_A_run1'
-simulation_folders = sorted(get_simulation_folders(base_simulation_path))
+if __name__=='__main__':
 
-if not simulation_folders:
-    print("No simulation folders found.")
-else:
-    selected_folder = select_simulation_folder(simulation_folders)
-    selected_folder_path = os.path.join(base_simulation_path, selected_folder)
-    plot_animation(selected_folder_path)
+    # Animate saved simulation
+    size = 175
+    cmap = plt.get_cmap("inferno")
+
+    # Paths
+    base_simulation_path = '/Users/oliversange/Library/Mobile Documents/com~apple~CloudDocs/Physikstudium/BA/BA_Desktop/Compressed simulations/data_2T_A_run1'
+    simulation_folders = sorted(get_simulation_folders(base_simulation_path))
+
+    if not simulation_folders:
+        print("No simulation folders found.")
+    else:
+        selected_folder = select_simulation_folder(simulation_folders)
+        selected_folder_path = os.path.join(base_simulation_path, selected_folder)
+        plot_animation(selected_folder_path)

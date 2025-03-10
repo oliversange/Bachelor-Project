@@ -6,9 +6,6 @@ from matplotlib.lines import Line2D
 from matplotlib.patches import Patch
 import matplotlib as mpl
 
-mpl.rcParams['xtick.labelsize'] = 14
-mpl.rcParams['ytick.labelsize'] = 14
-
 class Plots:
 
     def __init__(self, parent_directories, save_path):
@@ -65,7 +62,6 @@ class Plots:
         if match:
             return match.group(1)[0] + r"$r_{\mathrm{c}}$"
 
-
     def main_plot(self, path_dict):
 
         fig = plt.figure(figsize=(15, 10))
@@ -92,6 +88,7 @@ class Plots:
             plt.title(r"$T_{\mathrm{A}}$ = " + str(torque), fontsize=self.fontsize)
 
             subplot_idx += 1
+
         #plt.suptitle(r"Survivor functions for the parameters $T_0 = 3T_A$, $R_{\mathrm{prey\_pred}} = 3r_c$", fontsize=16)
         #plt.subplots_adjust(top=0.9)
         plt.tight_layout()
@@ -136,12 +133,18 @@ class Plots:
         plt.xlabel(r'time t in units of $\tau_{\mathrm{r}}$', fontsize = self.fontsize)
         plt.ylabel('Survivorship function $S(t)$', fontsize = self.fontsize)
 
+if __name__=='__main__':
 
-parent_dirs_R9 = ['/Users/oliversange/Desktop/BA_Desktop/Compressed simulations/data_2T_A_R9_run1', '/Users/oliversange/Desktop/BA_Desktop/Compressed simulations/data_2T_A_R9_run2', '/Users/oliversange/Desktop/BA_Desktop/Compressed simulations/data_2T_A_R9_run3']
-parent_dirs_R5 = ['/Users/oliversange/Desktop/BA_Desktop/Compressed simulations/data_2T_A_R5_run1', '/Users/oliversange/Desktop/BA_Desktop/Compressed simulations/data_2T_A_R5_run2', '/Users/oliversange/Desktop/BA_Desktop/Compressed simulations/data_2T_A_R5_run3']
-parent_dirs_R3 = ['/Users/oliversange/Desktop/BA_Desktop/Compressed simulations/data_2T_A_run1', '/Users/oliversange/Desktop/BA_Desktop/Compressed simulations/data_2T_A_run2', '/Users/oliversange/Desktop/BA_Desktop/Compressed simulations/data_2T_A_run3']
-parent_dirs_T3 = ['/Users/oliversange/Desktop/BA_Desktop/Compressed simulations/data_3T_A_R3_run1', '/Users/oliversange/Desktop/BA_Desktop/Compressed simulations/data_3T_A_R3_run2', '/Users/oliversange/Desktop/BA_Desktop/Compressed simulations/data_3T_A_R3_run3']
+    # Create plot from saved simulations
+    mpl.rcParams['xtick.labelsize'] = 14
+    mpl.rcParams['ytick.labelsize'] = 14
 
-save_path = '/Users/oliversange/Desktop/PLOTS/data_2T_A_R9_average_big_plot.pdf'
+    # Simulations and save path
+    parent_dirs_R9 = ['/Users/oliversange/Desktop/BA_Desktop/Compressed simulations/data_2T_A_R9_run1', '/Users/oliversange/Desktop/BA_Desktop/Compressed simulations/data_2T_A_R9_run2', '/Users/oliversange/Desktop/BA_Desktop/Compressed simulations/data_2T_A_R9_run3']
+    parent_dirs_R5 = ['/Users/oliversange/Desktop/BA_Desktop/Compressed simulations/data_2T_A_R5_run1', '/Users/oliversange/Desktop/BA_Desktop/Compressed simulations/data_2T_A_R5_run2', '/Users/oliversange/Desktop/BA_Desktop/Compressed simulations/data_2T_A_R5_run3']
+    parent_dirs_R3 = ['/Users/oliversange/Desktop/BA_Desktop/Compressed simulations/data_2T_A_run1', '/Users/oliversange/Desktop/BA_Desktop/Compressed simulations/data_2T_A_run2', '/Users/oliversange/Desktop/BA_Desktop/Compressed simulations/data_2T_A_run3']
+    parent_dirs_T3 = ['/Users/oliversange/Desktop/BA_Desktop/Compressed simulations/data_3T_A_R3_run1', '/Users/oliversange/Desktop/BA_Desktop/Compressed simulations/data_3T_A_R3_run2', '/Users/oliversange/Desktop/BA_Desktop/Compressed simulations/data_3T_A_R3_run3']
+    save_path = '/Users/oliversange/Desktop/PLOTS/data_2T_A_R9_average_big_plot.pdf'
 
-A = Plots(parent_dirs_R9, save_path)
+    # Run
+    A = Plots(parent_dirs_R9, save_path)

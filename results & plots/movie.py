@@ -2,16 +2,10 @@ import os
 import matplotlib.pyplot as plt
 from matplotlib.animation import FuncAnimation
 import numpy as np
-import re
 import matplotlib as mpl
 
-mpl.rcParams['xtick.labelsize'] = 13
-mpl.rcParams['ytick.labelsize'] = 13
-
-size = 175
-cmap = plt.get_cmap("inferno")
-
 def update(frame):
+
     global size
     global selected_folder
     plt.clf()  # Clear the previous frame
@@ -40,10 +34,12 @@ def update(frame):
     """
 
 def get_simulation_folders(base_path):
+
     simulation_folders = [folder for folder in os.listdir(base_path) if os.path.isdir(os.path.join(base_path, folder))]
     return simulation_folders
 
 def select_simulation_folder(simulation_folders):
+
     print("Available simulation folders:")
     for i, folder in enumerate(simulation_folders, start=1):
         print(f"{i}. {folder}")
@@ -57,6 +53,7 @@ def select_simulation_folder(simulation_folders):
             print("Invalid input. Please enter a valid folder number.")
 
 def plot_animation(folder_path):
+
     # Load arrays from the specified folder
     prey_s_path = os.path.join(folder_path, 'prey.npy')
     predator_s_path = os.path.join(folder_path, 'predator.npy')
@@ -75,21 +72,30 @@ def plot_animation(folder_path):
     fig, ax = plt.subplots(figsize=(8, 8))  # Set figure size to better fit the plot
     ani = FuncAnimation(fig, update, frames=range(0, len(x_values), 1), interval=2, repeat=False)
 
-
     # Save the animation as an MP4 video with tight layout
     output_path = '/Users/oliversange/Desktop/BA Verteidigung plots/optimum.mp4'
     ani.save(output_path, writer='ffmpeg', fps=30, dpi=200, savefig_kwargs={'bbox_inches': 'tight', 'pad_inches': 0})
 
     plt.show()
 
-# Example usage:
-base_simulation_path = '/Users/oliversange/Library/Mobile Documents/com~apple~CloudDocs/Physikstudium/BA/BA_Desktop/Compressed simulations/data_2T_A_run1'
-simulation_folders = sorted(get_simulation_folders(base_simulation_path))
+if __name__=='__main__':
 
-if not simulation_folders:
-    print("2T_A Cloud")
-else:
-    selected_folder = select_simulation_folder(simulation_folders)
-    selected_folder_path = os.path.join(base_simulation_path, selected_folder)
-    plot_animation(selected_folder_path)
+    # Create movie from saved simulation
+
+    # Paramneters
+    mpl.rcParams['xtick.labelsize'] = 13
+    mpl.rcParams['ytick.labelsize'] = 13
+    size = 175
+    cmap = plt.get_cmap("inferno")
+
+    # Paths
+    base_simulation_path = '/Users/oliversange/Library/Mobile Documents/com~apple~CloudDocs/Physikstudium/BA/BA_Desktop/Compressed simulations/data_2T_A_run1'
+    simulation_folders = sorted(get_simulation_folders(base_simulation_path))
+
+    if not simulation_folders:
+        print("2T_A Cloud")
+    else:
+        selected_folder = select_simulation_folder(simulation_folders)
+        selected_folder_path = os.path.join(base_simulation_path, selected_folder)
+        plot_animation(selected_folder_path)
 
